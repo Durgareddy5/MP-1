@@ -1,0 +1,24 @@
+.rounding{
+    border-radius: 0.75rem;
+}
+
+.aligned{
+    margin: 0.75rem;
+}
+
+.aligned_2{
+    margin-top: 10px;
+    margin-bottom: 10px ;
+}
+
+.adjusted{
+    margin-left: 0px;
+    width: 100%;
+    padding-left: 2rem;
+    padding-right: 1rem;;
+}
+
+.fixed{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

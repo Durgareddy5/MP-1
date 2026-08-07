@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+tensorflow
+xgboost
+yfinance
+pandas
+numpy
+scikit-learn
+joblib

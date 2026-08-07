@@ -1,0 +1,49 @@
+.centered_div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.solved{
+    grid-template-columns: 1fr auto 1fr;
+    width: 100%;
+    max-width: none;
+}
+.fixed{
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem; 
+}
+
+.fixed_1{
+    max-width: none;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+.centered_div_2{
+    margin-top: 4rem;
+}
+
+ .centered_div_3{
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.rounded{
+    border-radius: 8px;
+}
+
+.gapped{
+    margin-top: 8px;
+    margin-bottom: 8px;
+}

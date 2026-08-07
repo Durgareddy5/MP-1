@@ -1,0 +1,20 @@
+[
+  "returns",
+  "ema_20",
+  "ema_50",
+  "vol_change",
+  "trend",
+  "momentum_5",
+  "momentum_10",
+  "volatility_10",
+  "volatility_20",
+  "rsi_14",
+  "macd",
+  "macd_signal",
+  "macd_hist",
+  "bb_percent",
+  "atr_14",
+  "lag1_return",
+  "lag2_return",
+  "lag3_return"
+]

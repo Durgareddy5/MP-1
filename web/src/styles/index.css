@@ -1,0 +1,554 @@
+/* ─── Google Fonts ─────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════
+   ProTrade Institutional — Master Design System
+   Premium Dark-First Trading Platform Stylesheet
+   ═══════════════════════════════════════════════════════ */
+
+
+/* ─── CSS Custom Properties (Design Tokens) ────────── */
+:root {
+  /* Typography */
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Transition */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /*
+    Layout height constants — keep in sync with the JS constants
+    exported from DashboardLayout.jsx (TOPBAR_H / TICKER_H / HEADER_H).
+    These are used nowhere in CSS today but serve as documentation.
+  */
+  --topbar-h: 64px;
+  --ticker-h: 36px;
+  --header-h: 100px;   /* topbar + ticker */
+}
+
+/* ─── Dark Theme (Default) ─────────────────────────── */
+[data-theme="dark"] {
+  --bg-primary: #09090b;
+  --bg-secondary: #0f0f13;
+  --bg-tertiary: #16161d;
+  --bg-card: #12121a;
+  --bg-card-hover: #1a1a25;
+  --bg-elevated: #1e1e2a;
+  --bg-input: #0d0d12;
+
+  --border-primary: #1e1e2e;
+  --border-secondary: #2a2a3a;
+  --border-active: #0052FF;
+  --border-glow: rgba(0, 82, 255, 0.3);
+
+  --text-primary: #f0f0f5;
+  --text-secondary: #8b8ba0;
+  --text-tertiary: #5a5a72;
+  --text-disabled: #3a3a4a;
+  --text-inverse: #09090b;
+
+  --accent-primary: #0052FF;
+  --accent-primary-hover: #0066FF;
+  --accent-primary-light: rgba(0, 82, 255, 0.12);
+  --accent-secondary: #7C3AED;
+
+  --profit: #00E676;
+  --profit-bg: rgba(0, 230, 118, 0.08);
+  --profit-border: rgba(0, 230, 118, 0.2);
+  --loss: #FF1744;
+  --loss-bg: rgba(255, 23, 68, 0.08);
+  --loss-border: rgba(255, 23, 68, 0.2);
+  --warning: #FFB300;
+  --info: #29B6F6;
+
+  --glass-bg: rgba(18, 18, 26, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+
+  --gradient-primary: linear-gradient(135deg, #0052FF 0%, #7C3AED 100%);
+  --gradient-card: linear-gradient(145deg, rgba(18,18,26,0.9) 0%, rgba(15,15,19,0.95) 100%);
+  --gradient-glow: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0, 82, 255, 0.06), transparent 40%);
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 20px rgba(0, 82, 255, 0.15);
+
+  --scrollbar-track: #0f0f13;
+  --scrollbar-thumb: #2a2a3a;
+  --scrollbar-thumb-hover: #3a3a4a;
+}
+
+/* ─── Light Theme ──────────────────────────────────── */
+[data-theme="light"] {
+  --bg-primary: #FAFBFF;
+  --bg-secondary: #F0F2F8;
+  --bg-tertiary: #E8EBF2;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #F5F7FC;
+  --bg-elevated: #FFFFFF;
+  --bg-input: #F0F2F8;
+
+  --border-primary: #E2E5EF;
+  --border-secondary: #D0D4E0;
+  --border-active: #0052FF;
+  --border-glow: rgba(0, 82, 255, 0.2);
+
+  --text-primary: #0A0A14;
+  --text-secondary: #5A5E72;
+  --text-tertiary: #8A8EA0;
+  --text-disabled: #B0B4C4;
+  --text-inverse: #FFFFFF;
+
+  --accent-primary: #0052FF;
+  --accent-primary-hover: #003FCC;
+  --accent-primary-light: rgba(0, 82, 255, 0.08);
+  --accent-secondary: #7C3AED;
+
+  --profit: #00C853;
+  --profit-bg: rgba(0, 200, 83, 0.06);
+  --profit-border: rgba(0, 200, 83, 0.15);
+  --loss: #D50000;
+  --loss-bg: rgba(213, 0, 0, 0.06);
+  --loss-border: rgba(213, 0, 0, 0.15);
+  --warning: #FF8F00;
+  --info: #0288D1;
+
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(0, 0, 0, 0.06);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+
+  --gradient-primary: linear-gradient(135deg, #0052FF 0%, #7C3AED 100%);
+  --gradient-card: linear-gradient(145deg, rgba(255,255,255,0.95) 0%, rgba(250,251,255,0.98) 100%);
+  --gradient-glow: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0, 82, 255, 0.03), transparent 40%);
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.12);
+  --shadow-glow: 0 0 20px rgba(0, 82, 255, 0.08);
+
+  --scrollbar-track: #F0F2F8;
+  --scrollbar-thumb: #D0D4E0;
+  --scrollbar-thumb-hover: #B0B4C4;
+}
+
+/* ─── Base Reset & Global Styles ───────────────────── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+  transition: background-color var(--transition-base), color var(--transition-base);
+}
+
+/* ─── Typography ───────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.font-mono {
+  font-family: var(--font-mono) !important;
+}
+
+/* ─── Custom Scrollbar ─────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+/* ─── Selection ────────────────────────────────────── */
+::selection {
+  background: var(--accent-primary);
+  color: #fff;
+}
+
+/* ─── Focus Styles ─────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+/* ─── Glassmorphism Utility Classes ────────────────── */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+.glass-subtle {
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+}
+
+/* ─── Gradient Text ────────────────────────────────── */
+.gradient-text {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Glow Effects ─────────────────────────────────── */
+.glow-border {
+  position: relative;
+}
+.glow-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: var(--gradient-primary);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+.glow-border:hover::before {
+  opacity: 1;
+}
+
+/* ─── Card Hover Glow (Mouse Tracking) ─────────────── */
+.card-glow {
+  position: relative;
+  overflow: hidden;
+}
+.card-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-glow);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+.card-glow:hover::before {
+  opacity: 1;
+}
+
+/* ─── Animated Border Gradient ─────────────────────── */
+@property --border-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.animated-border {
+  --border-angle: 0deg;
+  border: 1px solid transparent;
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  background-image:
+    linear-gradient(var(--bg-card), var(--bg-card)),
+    conic-gradient(from var(--border-angle), transparent 25%, var(--accent-primary) 50%, transparent 75%);
+  animation: rotateBorder 4s linear infinite;
+}
+
+@keyframes rotateBorder {
+  to { --border-angle: 360deg; }
+}
+
+/* ─── Shimmer / Skeleton Loading ───────────────────── */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-tertiary);
+}
+.shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.04),
+    transparent
+  );
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  100% { transform: translateX(100%); }
+}
+
+/* ─── Pulse Dot (Live Indicator) ───────────────────── */
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--profit);
+  position: relative;
+}
+.pulse-dot::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: var(--profit);
+  opacity: 0.4;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.4; }
+  50% { transform: scale(1.8); opacity: 0; }
+}
+
+/* ─── Stock Price Flash Animations ─────────────────── */
+.flash-green {
+  animation: flashGreen 0.6s ease-out;
+}
+.flash-red {
+  animation: flashRed 0.6s ease-out;
+}
+
+@keyframes flashGreen {
+  0% { background-color: rgba(0, 230, 118, 0.2); }
+  100% { background-color: transparent; }
+}
+@keyframes flashRed {
+  0% { background-color: rgba(255, 23, 68, 0.2); }
+  100% { background-color: transparent; }
+}
+
+/* ─── Fade In Animations ───────────────────────────── */
+.fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+.fade-in-up {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+.fade-in-down {
+  animation: fadeInDown 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Slide Animations ─────────────────────────────── */
+.slide-in-left {
+  animation: slideInLeft 0.4s ease-out forwards;
+}
+.slide-in-right {
+  animation: slideInRight 0.4s ease-out forwards;
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* ─── Stagger Children Animation ───────────────────── */
+.stagger-children > * {
+  opacity: 0;
+  animation: fadeInUp 0.4s ease-out forwards;
+}
+.stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.10s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.20s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.30s; }
+.stagger-children > *:nth-child(7) { animation-delay: 0.35s; }
+.stagger-children > *:nth-child(8) { animation-delay: 0.40s; }
+.stagger-children > *:nth-child(9) { animation-delay: 0.45s; }
+.stagger-children > *:nth-child(10) { animation-delay: 0.50s; }
+
+/* ─── Floating Animation ──────────────────────────── */
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+.float-delayed {
+  animation: float 6s ease-in-out 2s infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+/* ─── Marquee / Ticker Tape ────────────────────────── */
+.ticker-tape {
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.ticker-tape-content {
+  display: flex;
+  animation: ticker 30s linear infinite;
+  gap: 2rem;
+}
+.ticker-tape:hover .ticker-tape-content {
+  animation-play-state: paused;
+}
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ─── Number Counter Animation ─────────────────────── */
+.counter-animate {
+  display: inline-block;
+  transition: all 0.3s ease-out;
+}
+
+/* ─── Profit/Loss Badge Styles ─────────────────────── */
+.badge-profit {
+  background: var(--profit-bg);
+  color: var(--profit);
+  border: 1px solid var(--profit-border);
+}
+.badge-loss {
+  background: var(--loss-bg);
+  color: var(--loss);
+  border: 1px solid var(--loss-border);
+}
+
+/* ─── Trading Table Styles ─────────────────────────── */
+.trading-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+.trading-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg-secondary);
+  color: var(--text-tertiary);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-primary);
+  font-family: var(--font-body);
+}
+.trading-table tbody tr {
+  transition: background-color var(--transition-fast);
+  border-bottom: 1px solid var(--border-primary);
+}
+.trading-table tbody tr:hover {
+  background: var(--bg-card-hover);
+}
+.trading-table tbody td {
+  padding: 0.6rem 0.75rem;
+  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  white-space: nowrap;
+}
+
+/* ─── Responsive container ─────────────────────────── */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ─── Page Transition ──────────────────────────────── */
+.page-enter {
+  opacity: 0;
+  transform: translateY(8px);
+}
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms ease-out, transform 300ms ease-out;
+}
+
+/*
+  ─── Noise Texture Overlay ─────────────────────────
+  FIX: was z-index 9999 which put it above modals/dropdowns and
+  prevented backdrop-filter from compositing correctly in some browsers.
+  z-index 15 keeps it above plain page content (z-0) but safely below
+  the fixed UI chrome: ticker (z-20), topbar (z-30), sidebar (z-40),
+  profile dropdown (z-40) and search modal (z-50).
+  pointer-events: none is unchanged so it never blocks clicks.
+*/
+.noise-overlay::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 15;          /* was 9999 — see comment above */
+  pointer-events: none;
+  opacity: 0.015;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}

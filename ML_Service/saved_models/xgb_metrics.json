@@ -1,0 +1,18 @@
+{
+  "holdout_accuracy": 0.4570237331622835,
+  "walk_forward_accuracy_mean": 0.42215088282504015,
+  "walk_forward_accuracy_std": 0.04946060654295539,
+  "walk_forward_f1_macro_mean": 0.29817030411610557,
+  "walk_forward_f1_macro_std": 0.021688510695991058,
+  "best_params": {
+    "subsample": 0.8,
+    "reg_lambda": 1.0,
+    "n_estimators": 300,
+    "min_child_weight": 7,
+    "max_depth": 4,
+    "learning_rate": 0.02,
+    "gamma": 0.5,
+    "colsample_bytree": 0.8
+  },
+  "best_cv_f1_macro": 0.4109261028699204
+}

@@ -1,0 +1,9 @@
+.fixed{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.rounding{
+    border-radius: 6px;
+}
