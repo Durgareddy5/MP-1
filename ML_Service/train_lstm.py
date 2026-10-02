@@ -45,7 +45,7 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import LSTM, Dense, Dropout
+from tensorflow.keras.layers import Input, LSTM, Dense, Dropout  # Add Input to imports
 from tensorflow.keras.callbacks import EarlyStopping
 from tensorflow.keras.optimizers import Adam
 
@@ -117,7 +117,8 @@ def build_symbol_frames(symbol: str):
 
 def build_model(n_features: int, units: int, dropout: float, lr: float) -> Sequential:
     model = Sequential([
-        LSTM(units, return_sequences=True, input_shape=(SEQ_LENGTH, n_features)),
+        Input(shape=(SEQ_LENGTH, n_features)),  # Explicit Keras 3 Input layer
+        LSTM(units, return_sequences=True),
         Dropout(dropout),
         LSTM(units),
         Dropout(dropout),
@@ -179,7 +180,7 @@ def train_one_horizon(horizon: int, train_frames, test_frames, scaler):
             epochs=60,
             batch_size=32,
             callbacks=[es],
-            verbose=0,
+            verbose=1,
         )
         val_loss = min(history.history["val_loss"])
         print(f"  best val_loss: {val_loss:.6f} (stopped at epoch {len(history.history['val_loss'])})")
